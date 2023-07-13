@@ -1,0 +1,41 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    margin: 0;
+    align-items:center;
+    height: 100vh;
+    background-color: rgb(183, 164, 164);
+    font-family: 'Courier New', monospace;
+}
+
+h1 {
+    margin: 0;
+}
+
+.container {
+    /*grid size*/
+    width: 480px;
+    height: 480px;
+
+    display: flex;
+    flex-wrap: wrap;
+    background-color: white;
+    border: 5px solid black;
+    border-radius: 5px;
+}
+
+.square {
+    box-sizing: border-box;
+    width: 30px;
+    height: 30px;
+}
+
+.square:hover {
+    background-color: black;
+}
+
+.black {
+    background-color: black;
+}
