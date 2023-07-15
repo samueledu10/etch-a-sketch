@@ -7,24 +7,59 @@ function changeColor(square) {
 
 }
 
-let gridSize = 16;
+function createGrid(size) {
+    let containerSize = 480;
+    const container = document.querySelector(".container");
+    //container.setAttribute("height", `${containerSize}`);
+    //container.setAttribute("width", `${containerSize}px`);
 
-const container = document.querySelector(".container");
+    // if grid already exists, delete it
+    let squares = document.querySelectorAll(".square");
+    squares.forEach((square) => square.remove());
 
-// array that holds the gridSize x gridSize grid
-//let grid = [];
+    for (let row = 0; row < size; ++row) {
 
-// create div element to fill grid
-for (let row = 0; row < gridSize; ++row) {
-    //grid.push([]);
-
-    for (let column = 0; column < gridSize; ++column ) {
-        let square = document.createElement("div");
-        square.classList.add("square");
-        //grid[row].push(square);
-        container.appendChild(square);
+        for (let column = 0; column < size; ++column ) {
+            let square = document.createElement("div");
+            square.style.height = `${containerSize / size}px`;
+            square.style.width = `${containerSize / size}px`;
+            square.classList.add("square");
+            container.appendChild(square);
+            changeColor(square);
+        }
     }
 }
+let gridSize = 32; //16
 
+//ask user to choose number of square on grid
+let resize = document.createElement("button");
+resize.classList.add("btn");
+resize.textContent = "Resize";
+
+resize.addEventListener("click", () => {
+    gridSize = 0;
+    while(gridSize < 16 || gridSize > 100) {
+        gridSize = +prompt("Number of square on grid", "16-100");
+    }
+    createGrid(gridSize);
+    console.log(gridSize);
+});
+
+createGrid(gridSize);
+
+//change color when mouse hover
 let squares = document.querySelectorAll(".square");
 squares.forEach(changeColor);
+
+document.body.appendChild(resize);
+
+// create div element to fill grid
+// for (let row = 0; row < gridSize; ++row) {
+
+//     for (let column = 0; column < gridSize; ++column ) {
+//         let square = document.createElement("div");
+//         //square.cssText = `height: ${gridSize/containerSize}px; width: ${gridSize/containerSize}px`;
+//         square.classList.add("square");
+//         container.appendChild(square);
+//     }
+// }
